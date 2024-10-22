@@ -47,7 +47,7 @@ while running:
     #screen.blit()
 
     path.drawPath(pygame, screen)
-    traj.drawTrajectory(pygame, screen, resolution=20)
+    traj.drawTrajectory(pygame, screen, resolution=15)
 
     # Update the display
     pygame.display.flip()
