@@ -1,3 +1,5 @@
+import math
+
 class Pose:
     def __init__(self, point, heading):
         self.x = point[0]
@@ -17,4 +19,4 @@ class Pose:
         return self.heading
 
     def __str__(self) -> str:
-        return f"x: {self.x}, y: {self.y}, heading: {self.heading}"
+        return f"x: {self.x}, y: {self.y}, heading: {math.degrees(self.heading)}"

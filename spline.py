@@ -81,7 +81,7 @@ class Spline:
         return self.x(time), self.y(time)
 
     def getHeadingAtTime(self, time):
-        return self.dy(time) / self.dx(time)
+        return np.arctan2(self.dy(time), self.dx(time))
 
     def getPoseAtTime(self, time):
         return Pose(self.getPointAtTime(time), self.getHeadingAtTime(time))
