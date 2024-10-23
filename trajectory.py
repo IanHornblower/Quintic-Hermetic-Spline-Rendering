@@ -3,7 +3,7 @@ from cordconversion import toField, toScreen
 from polynomials import *
 from spline import Spline
 import numpy as np
-from arrow import draw_arrow
+from draw import draw_arrow, draw_spline
 
 class Trajectory:
     def __init__(self, path):
@@ -23,11 +23,16 @@ class Trajectory:
     def getDuration(self): # rename
         return len(self.splines)
 
-    def drawTrajectory(self, pygame, screen, direction = False, line = False, resolution = 1): # TODO: make it not draw every single frame, and only on update
-        for time in np.linspace(0, self.getDuration(), num=int(self.getDuration() * resolution)):
-            #pygame.draw.circle(screen, (20, 240, 15), toScreen(self.getPoseAtTime(time).tuple()), 1, 2)
-            pose = self.getPoseAtTime(time)
-            draw_arrow(pygame, screen, Pose(toScreen(pose.tuple()), pose.heading), size=10, width=2)
+    # pygame only
+    def drawTrajectory(self, pygame, screen, direction = False, line = True, arrows_per_spline = 10, spline_resolution = 20): # TODO: make it not draw every single frame, and only on update
+        if line:
+            for spline in self.splines:
+                draw_spline(pygame, screen, spline, resolution=spline_resolution, cordTranslation=toScreen)
+
+        if direction:   
+            for time in np.linspace(0, self.getDuration(), num=int(self.getDuration() * arrows_per_spline)):
+                pose = self.getPoseAtTime(time)
+                draw_arrow(pygame, screen, Pose(toScreen(pose.tuple()), pose.heading), size=10, width=2)
         
     def compute(self):
         splines = []

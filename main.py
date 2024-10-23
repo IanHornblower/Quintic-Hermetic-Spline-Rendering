@@ -9,7 +9,6 @@ import math
 # TODO:
 # Make points draggable
 # add tangent points 
-# connect splines via smooth lines
 # add curvature to the spline and trajectory 
 # change the colors line on a specified range depending on the curvature of the line
 
@@ -43,8 +42,6 @@ path = Path([
 
 traj = Trajectory(path)
 
-print(traj.splines[0].dx(0.5), traj.splines[0].dy(0.5), traj.splines[0].getHeadingAtTime(0.5))
-
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -57,7 +54,7 @@ while running:
     screen.blit(background_image, (0, 0))
     #screen.blit()
 
-    traj.drawTrajectory(pygame, screen, resolution=15)
+    traj.drawTrajectory(pygame, screen, arrows_per_spline=10, direction=True)
     path.drawPath(pygame, screen)
 
     # Update the display
