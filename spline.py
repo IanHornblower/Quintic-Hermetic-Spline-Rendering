@@ -66,7 +66,7 @@ class Spline:
                h1.derive().evaluate(time) * self.vx0 + \
                h2.derive().evaluate(time) * self.ax0 + \
                h3.derive().evaluate(time) * self.ax1 + \
-               h4.derive().evaluate(time) * self.vx0 + \
+               h4.derive().evaluate(time) * self.vx1 + \
                h5.derive().evaluate(time) * self.x1 
 
     def dy(self, time):
@@ -74,7 +74,7 @@ class Spline:
                h1.derive().evaluate(time) * self.vy0 + \
                h2.derive().evaluate(time) * self.ay0 + \
                h3.derive().evaluate(time) * self.ay1 + \
-               h4.derive().evaluate(time) * self.vy0 + \
+               h4.derive().evaluate(time) * self.vy1 + \
                h5.derive().evaluate(time) * self.y1  
 
     def getPointAtTime(self, time):
