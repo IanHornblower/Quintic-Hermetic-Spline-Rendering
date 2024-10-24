@@ -8,6 +8,7 @@ import math
 
 ### 
 # TODO:
+# add desired color for curvature map
 # add trajectory constraints 
 # add desired velocity at time
 # find a dif way to integrate
