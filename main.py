@@ -2,15 +2,19 @@ import pygame
 import sys
 from path import Path
 from pose import Pose
+from spline import Spline
 from trajectory import Trajectory
 import math
 
 ### 
 # TODO:
-# Make points draggable
-# add tangent points 
-# add curvature to the spline and trajectory 
-# change the colors line on a specified range depending on the curvature of the line
+# add trajectory constraints 
+# add desired velocity at time
+# find a dif way to integrate
+# make path points prettier
+# make points draggable
+# add tangent points
+# clean up and optimze code
 
 # Initialize Pygame
 pygame.init()
@@ -35,12 +39,16 @@ path = Path([
     Pose((20, 20), math.pi),
     Pose((-40, 19), math.pi/3),
     Pose((-25, 50), math.pi/6),
-    Pose((30, 60), math.pi/6)
+    Pose((30, 60), math.pi/1.2)
     ])
 
 #path.addPose(Pose(20, 20), math.pi/4) # Also able to add paths like this
 
 traj = Trajectory(path)
+
+s = Spline((-25, 50), (30, 60), math.pi/6, math.pi/1.2)
+
+print(s.length, s.getCurvature(0.5), s.getVelocityReduction(0.5))
 
 while running:
     for event in pygame.event.get():
@@ -54,7 +62,7 @@ while running:
     screen.blit(background_image, (0, 0))
     #screen.blit()
 
-    traj.drawTrajectory(pygame, screen, arrows_per_spline=10, direction=True)
+    traj.drawTrajectory(pygame, screen, arrows_per_spline=10, direction=False, curvatureMap=True)
     path.drawPath(pygame, screen)
 
     # Update the display

@@ -1,5 +1,14 @@
 import numpy as np
 
+# Only works on the interval 0_1 wack but works 
+def integrate(lower_bound, upper_bound, equation, accuracy = 3):
+    samples = 10**accuracy
+    sum = 0
+    for t in np.linspace(lower_bound, upper_bound, samples):
+        sum += equation(t)
+
+    return sum / samples
+
 class Polynomial:
     def derive(self):
         pass

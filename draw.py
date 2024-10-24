@@ -32,17 +32,17 @@ def draw_spline(pygame: pygame, screen, spline: Spline, color = (255, 0, 0), res
         else: 
             point = spline.getPointAtTime(time)
         
-        if curvatureMap: # Still need to implement
-            pygame.draw.line(screen, color_lerp((255, 0, 0), (0, 255, 0), time), lastPoint, point, width)
+        if curvatureMap:
+            pygame.draw.line(screen, color_lerp((255, 0, 0), (0, 255, 0), spline.getVelocityReduction(time)), lastPoint, point, width)
         else:
             pygame.draw.line(screen, color, lastPoint, point, width)
         
         lastPoint = point
 
-# Lifted from https://www.alanzucconi.com/2016/01/06/colour-interpolation/
 def lerp(a, b, t):
     return a + t * (b - a)
 
+# Lifted from https://www.alanzucconi.com/2016/01/06/colour-interpolation/
 def color_lerp(color_a, color_b, t):
     # Convert RGB to HSV
     color_a = Color(color_a)

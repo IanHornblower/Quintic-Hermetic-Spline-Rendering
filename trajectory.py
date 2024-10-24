@@ -24,10 +24,10 @@ class Trajectory:
         return len(self.splines)
 
     # pygame only
-    def drawTrajectory(self, pygame, screen, direction = False, line = True, arrows_per_spline = 10, spline_resolution = 20): # TODO: make it not draw every single frame, and only on update
+    def drawTrajectory(self, pygame, screen, direction = False, line = True, curvatureMap = False, arrows_per_spline = 10, spline_resolution = 20): # TODO: make it not draw every single frame, and only on update
         if line:
             for spline in self.splines:
-                draw_spline(pygame, screen, spline, resolution=spline_resolution, cordTranslation=toScreen)
+                draw_spline(pygame, screen, spline, resolution=spline_resolution, cordTranslation=toScreen, curvatureMap=curvatureMap)
 
         if direction:   
             for time in np.linspace(0, self.getDuration(), num=int(self.getDuration() * arrows_per_spline)):
