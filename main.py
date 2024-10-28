@@ -4,13 +4,12 @@ from path import Path
 from pose import Pose
 from spline import Spline
 from trajectory import Trajectory
+from draw import *
 import math
 
 ### 
 # TODO:
-# add desired color for curvature map
-# add trajectory constraints 
-# add desired velocity at time
+# integrate the curvature reduction system and motionprofile
 # find a dif way to integrate
 # make path points prettier
 # make points draggable
@@ -39,7 +38,7 @@ path = Path([
     Pose((40, -20), math.pi/4),
     Pose((20, 20), math.pi),
     Pose((-40, 19), math.pi/3),
-    Pose((-25, 50), math.pi/6),
+    Pose((-25, 50), math.pi/6),     
     Pose((30, 60), math.pi/1.2)
     ])
 
@@ -47,9 +46,7 @@ path = Path([
 
 traj = Trajectory(path)
 
-s = Spline((-25, 50), (30, 60), math.pi/6, math.pi/1.2)
-
-print(s.length, s.getCurvature(0.5), s.getVelocityReduction(0.5))
+print(traj.duration)
 
 while running:
     for event in pygame.event.get():
@@ -63,7 +60,7 @@ while running:
     screen.blit(background_image, (0, 0))
     #screen.blit()
 
-    traj.drawTrajectory(pygame, screen, arrows_per_spline=10, direction=False, curvatureMap=True)
+    traj.drawTrajectory(pygame, screen, arrows_per_spline=4, direction=True, curvatureMap=True)
     path.drawPath(pygame, screen)
 
     # Update the display
