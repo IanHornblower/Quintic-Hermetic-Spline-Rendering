@@ -28,7 +28,7 @@ screen = pygame.display.set_mode(window_size)
 pygame.display.set_caption('Path testing')
 
 # Load and scale background image
-background_image = pygame.image.load('field.png')
+background_image = pygame.image.load('grid.png')
 background_image = pygame.transform.scale(background_image, window_size)
 
 running = True
@@ -39,7 +39,7 @@ path = Path([
     Pose((20, 20), math.pi),
     Pose((-40, 19), math.pi/3),
     Pose((-25, 50), math.pi/6),     
-    Pose((30, 60), math.pi/1.2)
+    Pose((0, 0), math.pi/1.2)
     ])
 
 #path.addPose(Pose(20, 20), math.pi/4) # Also able to add paths like this

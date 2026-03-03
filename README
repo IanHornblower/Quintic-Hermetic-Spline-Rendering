@@ -1,1 +1,19 @@
 uhh wsg 
+
+### What is this?
+This is a path renderer It uses quintic hermetic splines to create a smooth path for the robot to follow. While displaying the curvature in the form of a gradient, indicating where the path should slow down or speed up.
+
+### Example of the renderer: 
+<img src="readme_1.png" alt="Example of the renderer" width="300">
+
+### How to run the code:
+
+1. Install the dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+2. Run the code:
+```bash
+python main.py
+```
